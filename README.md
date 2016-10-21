@@ -41,21 +41,21 @@ ex. deployments/SSL-L7proxy-sandwich-utility-only-immutable/README.md
   * Select "Continue"
   * Hit "Accept Software Terms"
 
-
->Note: If you do not Accept the EULA in the Marketplace, the cloudformation 
->templates may appear to hang (see events EVENTs tab for information 
->as to why the templates did not "complete")
+> Note: If you do not Accept the EULA in the Marketplace, the cloudformation templates may appear to hang (see events EVENTs tab for information as to why the templates did not "complete")
 
 2. The reference scale out solution creates a VPC with three Availability Zones so access to one of the regions below:
-us-east-1 (N.Virginia)
-us-west-2 (Oregon)
-eu-west-1 (Ireland)
-sa-east-1 (Sao Paulo)
-ap-southeast-2 (Sydney)
-3) Set of AWS Access Keys for use by the BIG-IP, as described here:
+
+  * us-east-1 (N.Virginia)
+  * us-west-2 (Oregon)
+  * eu-west-1 (Ireland)
+  * sa-east-1 (Sao Paulo)
+  * ap-southeast-2 (Sydney)
+  
+3. Set of AWS Access Keys for use by the BIG-IP, as described here:
 https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-amazon-ec2-12-0-0/4.html#unique_1903231220
 These keys will be used to send authenticated messages to AWS (ex. cloudwatch metrics).
 ex. The user whose keys are being used should have following policy attached:
+```
 {
     "Version": "2012-10-17",
     "Statement": [
@@ -68,6 +68,7 @@ ex. The user whose keys are being used should have following policy attached:
         }
     ]
 }
+```
 4) OPTIONAL: Upload a certificate to a private S3 bucket that the those aws keys have permisson to. Otherwise, the "default" certificate on the Big-IP will be used (recommended for first time). For more information about managing SSL certificates, see the README.md in each deployment type directory (ex. /deployments/deployment_type/README.md).
 5) OPTIONAL - If you use the deploy_stacks.py python script per instructions below:
 Install yaml and boto3
