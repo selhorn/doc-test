@@ -40,7 +40,8 @@ ex. deployments/SSL-L7proxy-sandwich-utility-only-immutable/README.md
   * Go to product page for Big-IP selected
   * Select "Continue"
   * Hit "Accept Software Terms"
-If you do not Accept the EULA in the Marketplace, the cloudformation templates may appear to hang (please see events EVENTs tab for information as to why the templates did not "complete")*
+  
+    >If you do not Accept the EULA in the Marketplace, the cloudformation templates may appear to hang (please see events EVENTs tab for information as to why the templates did not "complete")*
 
 2. The reference scale out solution creates a VPC with three Availability Zones so access to one of the regions below:
 
