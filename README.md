@@ -73,10 +73,11 @@ ex. The user whose keys are being used should have following policy attached:
 4. OPTIONAL: Upload a certificate to a private S3 bucket that the those aws keys have permisson to. Otherwise, the "default" certificate on the Big-IP will be used (recommended for first time). For more information about managing SSL certificates, see the README.md in each deployment type directory (ex. /deployments/deployment_type/README.md).
 
 5. OPTIONAL - If you use the deploy_stacks.py python script per instructions below:
-Install yaml and boto3
-pip install pyyaml
-pip install boto3
-You will need an AWS Access Key and Secret Access key configured in boto's typical credential locations, ex. ~/.aws/credentials or environment vars like AWS_ACCESS_KEY_ID, with appropriate permissions to create all the EC2 objects
+  * Install yaml and boto3
+  * pip install pyyaml
+  * pip install boto3
+  You will need an AWS Access Key and Secret Access key configured in boto's typical credential locations, ex. ~/.aws/credentials or environment vars like AWS_ACCESS_KEY_ID, with appropriate permissions to create all the EC2 objects
+
 TWO DEPLOYMENT OPTIONS:
 
 To use this example code, you may either 1) manually launch the CloudFormation templates directly or 2) use the deploy_stacks.py script (recommended).
