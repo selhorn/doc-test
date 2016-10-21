@@ -42,7 +42,8 @@ ex. deployments/SSL-L7proxy-sandwich-utility-only-immutable/README.md
   * Hit "Accept Software Terms"
 
 
-  ```  If you do not Accept the EULA in the Marketplace, the cloudformation templates may appear to hang (please see events EVENTs tab for information as to why the templates did not "complete")
+  ```
+  If you do not Accept the EULA in the Marketplace, the cloudformation templates may appear to hang (please see events EVENTs tab for information as to why the templates did not "complete")
   ```
   
 
