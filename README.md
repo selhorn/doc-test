@@ -1,4 +1,7 @@
 # AUTOSCALING BIG-IP DEVICES IN AWS
+[![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://yourdomain.com)
+
+
 
 ## Introduction
 This project contains implements autoscaling of BIG-IP systems in Amazon Web Services using AWS CloudFormation templates. As traffic increases or decreases, the number of BIG-IP devices automatically increases or decreases accordingly.
