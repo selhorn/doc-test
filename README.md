@@ -9,11 +9,10 @@ This project contains implements autoscaling of BIG-IP systems in Amazon Web Ser
 ## Documentation
 These examples demonstrate leveraging `cloudinit` in the launch configs to provide the configuration for the autoscaled instances.
 
-* Another method is creating custom AMIs. For more information on that method, please see the official documentation on AskF5: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-autoscaling-amazon-ec2-12-1-0.html
+* Another method is creating custom AMIs. For more information on that method, see the official documentation on AskF5: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-autoscaling-amazon-ec2-12-1-0.html
 
-* For service discovery, this example also demonstrates using Big-IPs FQDN Pools (which uses DNS to populate the pool members). For more information, see: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/ltm-implementations-12-1-0/25.html?sr=56133323
-* Another service discovery method available is BIG-IP's AWS Autoscale Pool Member Discovery feature: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-autoscaling-amazon-ec2-12-1-0/2.html
-The individual directories in the /deployments directory contain variations of an autoscaled deployment.
+* For service discovery, this example also demonstrates using BIG-IP FQDN Pools (which uses DNS to populate the pool members). For more information, see: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/ltm-implementations-12-1-0/25.html?sr=56133323
+* Another service discovery method available is BIG-IP's AWS Autoscale Pool Member Discovery feature: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-autoscaling-amazon-ec2-12-1-0/2.html. The individual directories in the /deployments directory contain variations of an autoscaled deployment.
 
 ## Usage
 
