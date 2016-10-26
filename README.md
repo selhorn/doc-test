@@ -88,7 +88,7 @@ To use this example code, you may either 1) use the deploy_stacks.py script (rec
 
 This is the easiest and least error prone method by far. The script launches each of the CloudFormation templates in the correct order.
 To use this script:
-1) Find **config.yaml.example** in this directory, copy this to a new file named **config.yaml** (which is excluded in .gitignore to avoid publishing credentials ). In this config.yaml file, edit the variables for your scenario. The last flag in the script 'deploy_jmeter_host' should be given a value of 'true' if you wish to test scale out using JMeter as documented below.
+1) Find **config.yaml.example** in this directory, copy this to a new file named **config.yaml** (which is excluded in .gitignore to avoid publishing credentials). In this config.yaml file, edit the variables for your scenario. The last flag in the script 'deploy_jmeter_host' should be given a value of 'true' if you wish to test scale out using JMeter as documented below.
 2) Then run the script: 
 ```
 python ./deploy_stacks.py -d <deployment_type>
@@ -99,16 +99,17 @@ Use the output of the script and/or go the output tab of each cloudformation tem
 
 Method 2: Manually deploy the CloudFormation Templates
 
-1) Go to the Cloudformation page of the AWS console. Select "Create Stack"
-2) Choose "Upload a template to Amazon S3" and navigate to the cft directory of the deployment you would like launch.
+1. Go to the Cloudformation page of the AWS console. Select "Create Stack"
+2. Choose "Upload a template to Amazon S3" and navigate to the cft directory of the deployment you would like launch.
 ex. Recommend:
 deployments/SSL-L7proxy-sandwich-utility-only-immutable/cfts
 Launch the following CFTs in the following order:
-1) common.template
-2) application.template
-3) autoscale-bigip.template
-4) byol-bigip.template (if deployment type contains it)
-5) ubuntu-client.template
+  1. common.template
+  2. application.template
+  3. autoscale-bigip.template
+  4. byol-bigip.template (if deployment type contains it)
+  5. ubuntu-client.template
+  
 This ordering is necessary because "output" values from previous templates are used as "input" parameters for later templates. Note that "output" variables names are the same for all matching input parameters. For example, the outputs from the common.template include Vpc, Subnets, AvailabilityZones, BigipSecurityGroup, etc. so when creating later templates, you should "copy" some outputs from previous templates and "paste" them into input parameters of the next.
 Although this method may allow you to develop a deeper understanding of the autoscaled deployments, due to numerous inputs and outputs, it is more error prone.
 
