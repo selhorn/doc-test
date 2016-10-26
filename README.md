@@ -18,15 +18,15 @@ These examples demonstrate leveraging `cloudinit` in the launch configs to provi
 
 ### L7 Proxy
 
-The example virtual service has a simple URI routing policy. Deploys Big-IP Local Traffic Manager (LTM) images (License = Good).
+The example virtual service has a simple URI routing policy. Deploys BIG-IP Local Traffic Manager (LTM) images (License = Good).
 
-* [SSL-L7proxy-utility-only-immutable](https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/tree/master/deployments/SSL-L7proxy-utility-only-immutable): This uses DNS LB to distribute traffic to the Big-IPs)
-* [SSL-L7proxy-sandwich-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-utility-only-immutable) (uses ELB to distribute traffic to the Big-IPs)
-* [SSL-L7proxy-sandwich-byol-and-utility-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-byol-and-utility-immutable) (uses ELB to distribute traffic to the Big-IPs)
+* [SSL-L7proxy-utility-only-immutable](https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/tree/master/deployments/SSL-L7proxy-utility-only-immutable): This uses DNS LB to distribute traffic to the BIG-IPs)
+* [SSL-L7proxy-sandwich-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-utility-only-immutable) (uses ELB to distribute traffic to the BIG-IPs)
+* [SSL-L7proxy-sandwich-byol-and-utility-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-byol-and-utility-immutable) (uses ELB to distribute traffic to the BIG-IPs)
 
 ### Web Application Firewall (WAF)
 
-Example virtual service has a simple Web Application Firewall policy. Deploys Big-IP Application Security Manager (ASM) images (License = Best).
+Example virtual service has a simple Web Application Firewall policy. Deploys BIG-IP Application Security Manager (ASM) images (License = Best).
 * [SSL-waf-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-waf-utility-only-immutable) (uses DNS LB)
 * [SSL-waf-sandwich-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-waf-sandwich-utility-only-immutable) (uses ELB)
 * [SL-waf-sandwich-byol-and-utility-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-waf-sandwich-byol-and-utility-immutable) (uses ELB)
@@ -37,7 +37,7 @@ ex. deployments/SSL-L7proxy-sandwich-utility-only-immutable/README.md
 
 ## Prerequisites
 
-1. Access to Big-IP images in the Amazon region within which you are working. Make sure that you have accepted the EULA for ALL images used in the AWS marketplace.
+1. Access to BIG-IP images in the Amazon region within which you are working. Make sure that you have accepted the EULA for ALL images used in the AWS marketplace.
   * Sign in to your account
   * Go to product page for BIG-IP selected
   * Click **Continue**
@@ -72,7 +72,7 @@ ex. The user whose keys are being used should have following policy attached:
     ]
 }
   ```
-4. OPTIONAL: Upload a certificate to a private S3 bucket that the those aws keys have permisson to. Otherwise, the "default" certificate on the Big-IP will be used (recommended for first time). For more information about managing SSL certificates, see the README.md in each deployment type directory (ex. /deployments/deployment_type/README.md).
+4. OPTIONAL - Upload a certificate to a private S3 bucket that the those aws keys have permisson to. Otherwise, the "default" certificate on the BIG-IP will be used (recommended for first time). For more information about managing SSL certificates, see the README.md in each deployment type directory (ex. /deployments/deployment_type/README.md).
 
 5. OPTIONAL - If you use the deploy_stacks.py python script per instructions below:
   * Install yaml and boto3
