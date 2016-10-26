@@ -88,8 +88,9 @@ To use this example code, you may either 1) use the deploy_stacks.py script (rec
 
 This is the easiest and least error prone method by far. The script launches each of the CloudFormation templates in the correct order.
 To use this script:
-1) Find **config.yaml.example** in this directory, copy this to a new file named **config.yaml** (which is excluded in .gitignore to avoid publishing credentials). In this config.yaml file, edit the variables for your scenario. The last flag in the script 'deploy_jmeter_host' should be given a value of 'true' if you wish to test scale out using JMeter as documented below.
-2) Then run the script: 
+
+1. Find **config.yaml.example** in this directory, copy this to a new file named **config.yaml** (which is excluded in .gitignore to avoid publishing credentials). In this config.yaml file, edit the variables for your scenario. The last flag in the script 'deploy_jmeter_host' should be given a value of 'true' if you wish to test scale out using JMeter as documented below.
+2. Then run the script: 
 ```
 python ./deploy_stacks.py -d <deployment_type>
 ```
@@ -97,7 +98,7 @@ For example: ``` $python deploy_stacks.py -d SSL-L7proxy-sandwich-utility-only-i
 
 Use the output of the script and/or go the output tab of each cloudformation template to get login or additional information about the deployment.
 
-Method 2: Manually deploy the CloudFormation Templates
+### Method 2: Manually deploy the CloudFormation Templates
 
 1. Go to the Cloudformation page of the AWS console. Select "Create Stack"
 2. Choose "Upload a template to Amazon S3" and navigate to the cft directory of the deployment you would like launch.
