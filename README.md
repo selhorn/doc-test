@@ -72,7 +72,7 @@ ex. The user whose keys are being used should have following policy attached:
     ]
 }
   ```
-4. OPTIONAL - Upload a certificate to a private S3 bucket that the those aws keys have permisson to. Otherwise, the "default" certificate on the BIG-IP will be used (recommended for first time). For more information about managing SSL certificates, see the README.md in each deployment type directory (ex. /deployments/deployment_type/README.md).
+4. OPTIONAL - Upload a certificate to a private S3 bucket that the those aws keys have permisson to. Otherwise, the *default* certificate on the BIG-IP will be used (recommended for first time). For more information about managing SSL certificates, see the README.md in each deployment type directory (ex. /deployments/deployment_type/README.md).
 
 5. OPTIONAL - If you use the deploy_stacks.py python script per instructions below:
   * Install yaml and boto3
@@ -94,7 +94,10 @@ To use this script:
 ```
 python ./deploy_stacks.py -d <deployment_type>
 ```
-For example: ``` $python deploy_stacks.py -d SSL-L7proxy-sandwich-utility-only-immutable ```
+For example: 
+``` 
+$python deploy_stacks.py -d SSL-L7proxy-sandwich-utility-only-immutable 
+```
 
 Use the output of the script and/or go the output tab of each cloudformation template to get login or additional information about the deployment.
 
@@ -117,19 +120,21 @@ Although this method may allow you to develop a deeper understanding of the auto
 Triggering scale out
 
 To trigger a scale out event:
-1) Go to AWS Console. Go to EC2 -> Autoscale Groups. Select the autoscale group. Select the "Details" tab, hit "Edit" and adjust the "Desired" or "Min" values
+1. Go to AWS Console. Go to EC2 -> Autoscale Groups. Select the autoscale group. Select the **Details** tab, hit **Edit**+ and adjust the "Desired" or "Min" values
 or
 for your convenience, you can use the JMeter script included with these examples to generate traffic:
-1) If you have launched the optional ubuntu instance, copy or paste the simple_jmeter_load.xml file to the ubuntu host.
+  1. If you have launched the optional ubuntu instance, copy or paste the simple_jmeter_load.xml file to the ubuntu host.
 scp -i <path to key pair you provided in config.yaml> simple_jmeter_load.xml ubuntu@<ip address of the ubuntu instance>:/home/ubuntu
-2) SSH to it:
+  2. SSH to it:
 ssh -i <path to key pair you provided in config.yaml> ubuntu@<ip address of the ubuntu instance> 
-3) Find and replace all instances of string "AUTOSCALE-DNS" in the simple_jmeter_load.xml script with the WIDEIP OR ELB name associated with your BIG-IP Autoscale group using editor of choice (ex. vim,nano, pico, sed, etc)
+  3. Find and replace all instances of string "AUTOSCALE-DNS" in the simple_jmeter_load.xml script with the WIDEIP OR ELB name associated with your BIG-IP Autoscale group using editor of choice (ex. vim,nano, pico, sed, etc)
 sed -i.bak 's/AUTOSCALE-DNS/<NEW_DNS_NAME>/g' simple_jmeter_load.xml
 
 
 ex.
-```ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/gtm-wideip.example.com/g' simple_jmeter_load.xml```
+```
+ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/gtm-wideip.example.com/g' simple_jmeter_load.xml
+```
 or
 ``` ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-1263232202.us-east-1.elb.amazonaws.com/g' simple_jmeter_load.xml
 4) Run the script from the Ubuntu host:
