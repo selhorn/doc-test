@@ -143,7 +143,6 @@ or
 ``` ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-1263232202.us-east-1.elb.amazonaws.com/g' simple_jmeter_load.xml
 ```
   4. Run the script from the Ubuntu host:
-nohup jmeter -n -t simple_jmeter_load.xml &
-To stop traffic
-killall java
+    - nohup jmeter -n -t simple_jmeter_load.xml & To stop traffic killall java
+    
   5. A CloudWatch alarm will be triggered, and EC2 Autoscale will launch another BIG-IP instance.
