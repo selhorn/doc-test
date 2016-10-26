@@ -20,7 +20,7 @@ These examples demonstrate leveraging `cloudinit` in the launch configs to provi
 
 The example virtual service has a simple URI routing policy. Deploys BIG-IP Local Traffic Manager (LTM) images (License = Good).
 
-* [SSL-L7proxy-utility-only-immutable](https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/tree/master/deployments/SSL-L7proxy-utility-only-immutable): This uses DNS LB to distribute traffic to the BIG-IPs)
+* [SSL-L7proxy-utility-only-immutable](https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/tree/master/deployments/SSL-L7proxy-utility-only-immutable) (this uses DNS LB to distribute traffic to the BIG-IPs)
 * [SSL-L7proxy-sandwich-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-utility-only-immutable) (uses ELB to distribute traffic to the BIG-IPs)
 * [SSL-L7proxy-sandwich-byol-and-utility-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-byol-and-utility-immutable) (uses ELB to distribute traffic to the BIG-IPs)
 
@@ -80,10 +80,24 @@ ex. The user whose keys are being used should have following policy attached:
   * pip install boto3
   You will need an AWS Access Key and Secret Access key configured in boto's typical credential locations, ex. ~/.aws/credentials or environment vars like AWS_ACCESS_KEY_ID, with appropriate permissions to create all the EC2 objects
 
-TWO DEPLOYMENT OPTIONS:
+## TWO DEPLOYMENT OPTIONS:
 
-To use this example code, you may either 1) manually launch the CloudFormation templates directly or 2) use the deploy_stacks.py script (recommended).
-Method 1: Manually deploy the CloudFormation Templates
+To use this example code, you may either 1) use the deploy_stacks.py script (recommended) or 2) manually launch the CloudFormation templates directly.
+
+### Method 1 - deploy_stacks.py script
+
+This is the easiest and least error prone method by far. The script launches each of the CloudFormation templates in the correct order.
+To use this script:
+1) Find **config.yaml.example** in this directory, copy this to a new file named **config.yaml** (which is excluded in .gitignore to avoid publishing credentials ). In this config.yaml file, edit the variables for your scenario. The last flag in the script 'deploy_jmeter_host' should be given a value of 'true' if you wish to test scale out using JMeter as documented below.
+2) Then run the script: 
+```
+python ./deploy_stacks.py -d <deployment_type>
+```
+For example: ``` $python deploy_stacks.py -d SSL-L7proxy-sandwich-utility-only-immutable ```
+
+Use the output of the script and/or go the output tab of each cloudformation template to get login or additional information about the deployment.
+
+Method 2: Manually deploy the CloudFormation Templates
 
 1) Go to the Cloudformation page of the AWS console. Select "Create Stack"
 2) Choose "Upload a template to Amazon S3" and navigate to the cft directory of the deployment you would like launch.
@@ -97,17 +111,7 @@ Launch the following CFTs in the following order:
 5) ubuntu-client.template
 This ordering is necessary because "output" values from previous templates are used as "input" parameters for later templates. Note that "output" variables names are the same for all matching input parameters. For example, the outputs from the common.template include Vpc, Subnets, AvailabilityZones, BigipSecurityGroup, etc. so when creating later templates, you should "copy" some outputs from previous templates and "paste" them into input parameters of the next.
 Although this method may allow you to develop a deeper understanding of the autoscaled deployments, due to numerous inputs and outputs, it is more error prone.
-Method 2 - deploy_stacks.py
 
-This will be the easiest and least error prone method by far. The script will launch each of the CloudFormation templates in the correct order.
-To use this script:
-1) Find config.yaml.example in this directory, copy this to a new file named config.yaml ( which is excluded in .gitignore to avoid publishing credentials ). In this config.yaml file, edit the variables for your scenario. The last flag in the script 'deploy_jmeter_host' should be given a value of 'true' if you wish to test scale out using JMeter as documented below.
-2) Then run the script:
-python ./deploy_stacks.py -d <deployment_type>
-
-ex.
-$python deploy_stacks.py -d SSL-L7proxy-sandwich-utility-only-immutable
-Use the output of the script and/or go the output tab of each cloudformation template to get login or additional information about the deployment.
 Triggering scale out
 
 To trigger a scale out event:
@@ -123,9 +127,9 @@ sed -i.bak 's/AUTOSCALE-DNS/<NEW_DNS_NAME>/g' simple_jmeter_load.xml
 
 
 ex.
-ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/gtm-wideip.example.com/g' simple_jmeter_load.xml
+```ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/gtm-wideip.example.com/g' simple_jmeter_load.xml```
 or
-ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-1263232202.us-east-1.elb.amazonaws.com/g' simple_jmeter_load.xml
+``` ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-1263232202.us-east-1.elb.amazonaws.com/g' simple_jmeter_load.xml
 4) Run the script from the Ubuntu host:
 nohup jmeter -n -t simple_jmeter_load.xml &
 To stop traffic
