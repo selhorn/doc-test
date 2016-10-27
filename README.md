@@ -151,7 +151,7 @@ ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-126
 
   5. A CloudWatch alarm will be triggered, and EC2 Autoscale will launch another BIG-IP instance.
   
-  .. |Docs Build Status| image:: http://readthedocs.org/projects/f5-sdk/badge/?version=latest
-    :target: https://f5.com/solutions/deployment-guides
-    :alt: Documentation Status
+.. |Docs Build Status| image:: http://readthedocs.org/projects/f5-sdk/badge/?version=latest
+   :target: https://f5.com/solutions/deployment-guides
+   :alt: Documentation Status
 
