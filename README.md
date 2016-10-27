@@ -1,5 +1,5 @@
 # AUTOSCALING BIG-IP DEVICES IN AWS
-[![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com)
+[![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com) |Docs Build Status|
 
 
 
@@ -150,3 +150,8 @@ ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-126
     ```
 
   5. A CloudWatch alarm will be triggered, and EC2 Autoscale will launch another BIG-IP instance.
+  
+  .. |Docs Build Status| image:: http://readthedocs.org/projects/f5-sdk/badge/?version=latest
+    :target: https://f5.com/solutions/deployment-guides
+    :alt: Documentation Status
+
