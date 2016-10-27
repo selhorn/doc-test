@@ -120,17 +120,18 @@ Although this method may allow you to develop a deeper understanding of the auto
 ## Triggering scale out
 
 To trigger a scale out event:
+
 1. Go to AWS Console. Go to EC2 -> Autoscale Groups. Select the autoscale group. Select the **Details** tab, hit **Edit**+ and adjust the Desired or Min values or for your convenience, you can use the JMeter script included with these examples to generate traffic:
 
-  1. If you have launched the optional ubuntu instance, copy or paste the simple_jmeter_load.xml file to the ubuntu host.
+   1. If you have launched the optional ubuntu instance, copy or paste the simple_jmeter_load.xml file to the ubuntu host.
 ```
 scp -i <path to key pair you provided in config.yaml> simple_jmeter_load.xml ubuntu@<ip address of the ubuntu instance>:/home/ubuntu
 ```
-  2. SSH to it:
+   2. SSH to it:
 ```
 ssh -i <path to key pair you provided in config.yaml> ubuntu@<ip address of the ubuntu instance> 
 ```
-  3. Find and replace all instances of string **AUTOSCALE-DNS** in the simple_jmeter_load.xml script with the WIDEIP OR ELB name associated with your BIG-IP Autoscale group using editor of choice (ex. vim, nano, pico, sed, etc)
+   3. Find and replace all instances of string **AUTOSCALE-DNS** in the simple_jmeter_load.xml script with the WIDEIP OR ELB name associated with your BIG-IP Autoscale group using editor of choice (ex. vim, nano, pico, sed, etc)
   ```
 sed -i.bak 's/AUTOSCALE-DNS/<NEW_DNS_NAME>/g' simple_jmeter_load.xml
 ```
@@ -144,12 +145,12 @@ or
 ``` 
 ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-1263232202.us-east-1.elb.amazonaws.com/g' simple_jmeter_load.xml
 ```
-  4. Run the script from the Ubuntu host
+   4. Run the script from the Ubuntu host
     ```
     - nohup jmeter -n -t simple_jmeter_load.xml & To stop traffic killall java
     ```
 
-  5. A CloudWatch alarm will be triggered, and EC2 Autoscale will launch another BIG-IP instance.
+   5. A CloudWatch alarm will be triggered, and EC2 Autoscale will launch another BIG-IP instance.
   
 
 
