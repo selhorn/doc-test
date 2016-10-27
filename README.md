@@ -1,5 +1,5 @@
 # AUTOSCALING BIG-IP DEVICES IN AWS
-[![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com) |Docs Build Status|
+[![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com) | Docs Build Status |
 
 
 
