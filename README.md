@@ -2,7 +2,7 @@
 [![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com)
 [![Doc Status](http://readthedocs.org/projects/f5-sdk/badge/?version=latest)](https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-msft-azure-12-1-0.html)
 
-[blah](#L7 proxy)
+[blah](#L7-proxy)
 ## Introduction
 This project contains implements autoscaling of BIG-IP systems in Amazon Web Services using AWS CloudFormation templates. As traffic increases or decreases, the number of BIG-IP devices automatically increases or decreases accordingly.
 
