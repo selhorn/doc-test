@@ -17,8 +17,7 @@ These examples demonstrate leveraging `cloudinit` in the launch configs to provi
 
 ## Usage
 
-L7 Proxy
-----------------
+
 
 The example virtual service has a simple URI routing policy. Deploys BIG-IP Local Traffic Manager (LTM) images (License = Good).
 
@@ -154,6 +153,9 @@ ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-126
 
    5. A CloudWatch alarm will be triggered, and EC2 Autoscale will launch another BIG-IP instance.
   
+
+L7 Proxy
+----------------
 
 | Specific AWS Services                 | Basics                         | Tips                          | Gotchas                                        |
 |---------------------------------------|--------------------------------|-------------------------------|------------------------------------------------|
