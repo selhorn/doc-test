@@ -2,7 +2,7 @@
 [![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com)
 [![Doc Status](http://readthedocs.org/projects/f5-sdk/badge/?version=latest)](https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-msft-azure-12-1-0.html)
 
-
+[blah](L7 proxy)
 ## Introduction
 This project contains implements autoscaling of BIG-IP systems in Amazon Web Services using AWS CloudFormation templates. As traffic increases or decreases, the number of BIG-IP devices automatically increases or decreases accordingly.
 
@@ -16,20 +16,21 @@ These examples demonstrate leveraging `cloudinit` in the launch configs to provi
 
 ## Usage
 
-### L7 Proxy
+L7 Proxy
+----------------
 
 The example virtual service has a simple URI routing policy. Deploys BIG-IP Local Traffic Manager (LTM) images (License = Good).
 
-* [SSL-L7proxy-utility-only-immutable](https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/tree/master/deployments/SSL-L7proxy-utility-only-immutable) (this uses DNS LB to distribute traffic to the BIG-IPs)
-* [SSL-L7proxy-sandwich-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-utility-only-immutable) (uses ELB to distribute traffic to the BIG-IPs)
-* [SSL-L7proxy-sandwich-byol-and-utility-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-L7proxy-sandwich-byol-and-utility-immutable) (uses ELB to distribute traffic to the BIG-IPs)
+* [SSL-L7proxy-utility-only-immutable](https://f5.com) (this uses DNS LB to distribute traffic to the BIG-IPs)
+* [SSL-L7proxy-sandwich-utility-only-immutable] (https://f5.com) (uses ELB to distribute traffic to the BIG-IPs)
+* [SSL-L7proxy-sandwich-byol-and-utility-immutable] (https://f5.com) (uses ELB to distribute traffic to the BIG-IPs)
 
 ### Web Application Firewall (WAF)
 
 Example virtual service has a simple Web Application Firewall policy. Deploys BIG-IP Application Security Manager (ASM) images (License = Best).
-* [SSL-waf-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-waf-utility-only-immutable) (uses DNS LB)
-* [SSL-waf-sandwich-utility-only-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-waf-sandwich-utility-only-immutable) (uses ELB)
-* [SL-waf-sandwich-byol-and-utility-immutable] (https://gitswarm.f5net.com/cloudsolutions/f5-aws-autoscale-waf/blob/master/SSL-waf-sandwich-byol-and-utility-immutable) (uses ELB)
+* [SSL-waf-utility-only-immutable] (https://f5.com) (uses DNS LB)
+* [SSL-waf-sandwich-utility-only-immutable] (https://f5.com) (uses ELB)
+* [SL-waf-sandwich-byol-and-utility-immutable] (https://f5.com) (uses ELB)
 Deployment Name Terms:
 
 Quickstart: If this is your first time, we recommend starting with SSL-L7proxy-sandwich-utility-only-immutable
@@ -153,4 +154,7 @@ ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-126
    5. A CloudWatch alarm will be triggered, and EC2 Autoscale will launch another BIG-IP instance.
   
 
-
+| Specific AWS Services                 | Basics                         | Tips                          | Gotchas                                        |
+|---------------------------------------|--------------------------------|-------------------------------|------------------------------------------------|
+| [Security and IAM](#security-and-iam) | [📗](#security-and-iam-basics) | [📘](#security-and-iam-tips) | [📙](#security-and-iam-gotchas-and-limitations) |
+| [S3](#s3) | [📗](#s3-basics) | [📘](#s3-tips) | [📙](#s3-gotchas-and-limitations) |
