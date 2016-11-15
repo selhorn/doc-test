@@ -2,13 +2,14 @@
 [![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com)
 [![Doc Status](http://readthedocs.org/projects/f5-sdk/badge/?version=latest)](https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-msft-azure-12-1-0.html)
 
-Contents                 
+**Contents**             
 
  - [Introduction](#introduction) 
  - [Documentation](#documentation)  
  - [Usage](#usage)
    - [Web Application Firewall](#web-application-firewall)
  - [Prerequisites](#prerequisites)
+ - [Deployment Options](#two-deployment-options)
 
 
 ## Introduction
@@ -89,7 +90,7 @@ ex. The user whose keys are being used should have following policy attached:
   * pip install boto3
   You will need an AWS Access Key and Secret Access key configured in boto's typical credential locations, ex. ~/.aws/credentials or environment vars like AWS_ACCESS_KEY_ID, with appropriate permissions to create all the EC2 objects
 
-## TWO DEPLOYMENT OPTIONS:
+## TWO DEPLOYMENT OPTIONS
 
 To use this example code, you may either 1) use the deploy_stacks.py script (recommended) or 2) manually launch the CloudFormation templates directly.
 
