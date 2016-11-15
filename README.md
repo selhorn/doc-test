@@ -10,6 +10,7 @@
    - [Web Application Firewall](#web-application-firewall)
  - [Prerequisites](#prerequisites)
  - [Deployment Options](#two-deployment-options)
+   - [Method 1: Python Script](#method-1)
 
 
 ## Introduction
