@@ -8,7 +8,7 @@ Contents
  - [Documentation](#documentation)  
  - [Usage](#usage)
    - [Web Application Firewall](#web-application-firewall)
- - [Prerequisites](#prerequisistes)
+ - [Prerequisites](#prerequisites)
 
 
 ## Introduction
