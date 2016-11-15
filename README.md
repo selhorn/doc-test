@@ -4,7 +4,7 @@
 
 [Prerequisites](#prerequisites)  🐼🏀🏀🏀🍅🐲💚💛💜📌🗿👌👍💆💇🐴🚽🔵🔶🔷🔸🔹🔺🔻🔼👻
 
-![a random picture](http://jokesforlosers.weebly.com/uploads/5/3/8/8/53885375/766894_orig.jpg "A random photo")
+![a random picture](https://f5.com/Portals/1/Images/F5/Solutions/RA/DIAG-SOL-AVAIL-24702-app-avail-between-hybrid-data-centers.png "A random photo")
 
 ## Introduction
 This project contains implements autoscaling of BIG-IP systems in Amazon Web Services using AWS CloudFormation templates. As traffic increases or decreases, the number of BIG-IP devices automatically increases or decreases accordingly.
