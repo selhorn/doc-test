@@ -32,9 +32,9 @@ The example virtual service has a simple URI routing policy. Deploys BIG-IP Loca
 * [SSL-L7proxy-sandwich-utility-only-immutable] (https://f5.com) (uses ELB to distribute traffic to the BIG-IPs)
 * [SSL-L7proxy-sandwich-byol-and-utility-immutable] (https://f5.com) (uses ELB to distribute traffic to the BIG-IPs)
 
-### Web Application Firewall (WAF)
+### Web Application Firewall
 
-Example virtual service has a simple Web Application Firewall policy. Deploys BIG-IP Application Security Manager (ASM) images (License = Best).
+Example virtual service has a simple Web Application Firewall (WAF) policy. Deploys BIG-IP Application Security Manager (ASM) images (License = Best).
 * [SSL-waf-utility-only-immutable] (https://f5.com) (uses DNS LB)
 * [SSL-waf-sandwich-utility-only-immutable] (https://f5.com) (uses ELB)
 * [SL-waf-sandwich-byol-and-utility-immutable] (https://f5.com) (uses ELB)
