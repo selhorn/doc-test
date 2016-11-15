@@ -2,13 +2,17 @@
 [![Slack Status](https://f5cloudsolutions.herokuapp.com/badge.svg)](https://f5cloudsolutions.herokuapp.com)
 [![Doc Status](http://readthedocs.org/projects/f5-sdk/badge/?version=latest)](https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-msft-azure-12-1-0.html)
 
-[Prerequisites](#prerequisites)  🐼🏀🏀🏀🍅🐲💚💛💜📌🗿👌👍💆💇🐴🚽🔵🔶🔷🔸🔹🔺🔻🔼👻
+| Specific AWS Services                 | Basics                         | Tips                          | Gotchas                                        |
+|---------------------------------------|--------------------------------|-------------------------------|------------------------------------------------|
+| [Security and IAM](#security-and-iam) | [📗](#security-and-iam-basics) | [📘](#security-and-iam-tips) | [📙](#security-and-iam-gotchas-and-limitations) |
+| [S3](#s3) | [📗](#s3-basics) | [📘](#s3-tips) | [📙](#s3-gotchas-and-limitations) |
+
+[Prerequisites](#prerequisites)  
 
 
 ## Introduction
 This project contains implements autoscaling of BIG-IP systems in Amazon Web Services using AWS CloudFormation templates. As traffic increases or decreases, the number of BIG-IP devices automatically increases or decreases accordingly.
 
-![a random picture](https://f5.com/Portals/1/Images/F5/Solutions/RA/DIAG-SOL-AVAIL-24702-app-avail-between-hybrid-data-centers.png "A random photo")
 
 ## Documentation
 These examples demonstrate leveraging `cloudinit` in the launch configs to provide the configuration for the autoscaled instances.
@@ -17,6 +21,8 @@ These examples demonstrate leveraging `cloudinit` in the launch configs to provi
 
 * For service discovery, this example also demonstrates using BIG-IP FQDN Pools (which uses DNS to populate the pool members). For more information, see: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/ltm-implementations-12-1-0/25.html?sr=56133323
 * Another service discovery method available is BIG-IP's AWS Autoscale Pool Member Discovery feature: https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-autoscaling-amazon-ec2-12-1-0/2.html. The individual directories in the /deployments directory contain variations of an autoscaled deployment.
+
+![a random picture](https://f5.com/Portals/1/Images/F5/Solutions/RA/DIAG-SOL-AVAIL-24702-app-avail-between-hybrid-data-centers.png "A random photo")
 
 ## Usage
 
@@ -158,7 +164,7 @@ ubuntu@ip-10-0-1-232:~$ sed -i.bak 's/AUTOSCALE-DNS/BigipElasticLoadBalancer-126
 L7 Proxy
 ----------------
 
-| Specific AWS Services                 | Basics                         | Tips                          | Gotchas                                        |
-|---------------------------------------|--------------------------------|-------------------------------|------------------------------------------------|
-| [Security and IAM](#security-and-iam) | [📗](#security-and-iam-basics) | [📘](#security-and-iam-tips) | [📙](#security-and-iam-gotchas-and-limitations) |
-| [S3](#s3) | [📗](#s3-basics) | [📘](#s3-tips) | [📙](#s3-gotchas-and-limitations) |
+
+
+
+🐼🏀🏀🏀🍅🐲💚💛💜📌🗿👌👍💆💇🐴🚽🔵🔶🔷🔸🔹🔺🔻🔼👻
