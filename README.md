@@ -95,7 +95,8 @@ ex. The user whose keys are being used should have following policy attached:
 
 To use this example code, you may either 1) use the deploy_stacks.py script (recommended) or 2) manually launch the CloudFormation templates directly.
 
-### Method 1 - deploy_stacks.py script
+### Method 1
+**deploy_stacks.py script**
 
 This is the easiest and least error prone method by far. The script launches each of the CloudFormation templates in the correct order.
 To use this script:
