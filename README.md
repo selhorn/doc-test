@@ -11,6 +11,7 @@
  - [Prerequisites](#prerequisites)
  - [Deployment Options](#two-deployment-options)
    - [Method 1: Python Script](#method-1)
+   - [Method 2: Manual Deployment](#method-1)
 
 
 ## Introduction
@@ -113,7 +114,8 @@ $python deploy_stacks.py -d SSL-L7proxy-sandwich-utility-only-immutable
 
 Use the output of the script and/or go the output tab of each cloudformation template to get login or additional information about the deployment.
 
-### Method 2: Manually deploy the CloudFormation Templates
+### Method 2
+**Manually deploy the CloudFormation Templates**
 
 1. Go to the Cloudformation page of the AWS console. Select "Create Stack"
 2. Choose "Upload a template to Amazon S3" and navigate to the cft directory of the deployment you would like launch.
