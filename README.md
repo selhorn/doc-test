@@ -17,7 +17,7 @@
 ## Introduction
 This project contains implements autoscaling of BIG-IP systems in Amazon Web Services using AWS CloudFormation templates. As traffic increases or decreases, the number of BIG-IP devices automatically increases or decreases accordingly.
 
-GET /repos/:JosephPJordan/:doc-test/contents/:source-file-for-reference
+GET /repos/:owner/:repo/contents/:path
 
 
 ## Documentation
@@ -176,3 +176,17 @@ L7 Proxy
 
 
 🐼🏀🏀🏀🍅🐲💚💛💜📌🗿👌👍💆💇🐴🚽🔵🔶🔷🔸🔹🔺🔻🔼👻
+
+{
+  "type": "file",
+  "encoding": "base64",
+  "size": 5362,
+  "name": "source-file-for-reference",
+  "path": "/JosephPJordan/doc-test/blob/master/source-file-for-reference",
+  "content": "encoded content ...",
+  "sha": "3d21ec53a331a6f037a91c368710b99387d012c1",
+  "url": "https://github.com/JosephPJordan/doc-test/blob/master/source-file-for-reference",
+  "git_url": "https://api.github.com/repos/octokit/octokit.rb/git/blobs/3d21ec53a331a6f037a91c368710b99387d012c1",
+  "html_url": "https://github.com/JosephPJordan/doc-test/blob/master/source-file-for-reference",
+  
+}
