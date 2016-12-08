@@ -244,10 +244,10 @@ Use this section for common problems and troubleshooting steps to solve them.
   -🐼 *The deploy button didn't do anything.*<br>
   Make sure you actually click the button.
   
-  -🐼 *Troubleshooting 2*<br>
+  -👻 *Troubleshooting 2*<br>
   Answer 2
   
-  -🐼 *Troubleshooting 3*<br>
+  -🚽 *Troubleshooting 3*<br>
   etc.
   
 
