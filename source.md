@@ -5,14 +5,9 @@
 
 ## Introduction
 
-This solution implements an ARM Template to deploy a base example of F5 in a cloud-focused single NIC deployment.  This is the standard Cloud design where the compute instance of
-F5 is running with a single interface, where both management and data plane traffic is processed.  This is a traditional model in the cloud where the deployment is considered one-armed.
+This solution implements an Azure ARM Template to deploy a base example of F5 in a cloud-focused, single NIC deployment.  This is the standard Cloud design where the compute instance of the BIG-IP LTM VE is running with a single interface, which processes both management and data plane traffic.  This is a traditional model in the cloud where the deployment is considered one-armed.
 
-See the [Configuration Example](#config) section for a configuration diagram and description for this solution.
-
-## Documentation
-
-The ***BIG-IP Virtual Edition and Microsoft Azure: Setup*** guide (https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-msft-azure-12-1-0.html) decribes how to create the configuration manually without using the ARM template.
+See the **[Additional Information]**(#config) section for a configuration diagram and description for this solution.
 
 ## Installation
 
@@ -23,13 +18,13 @@ You have three options for deploying this template:
 
 ### <a name="azure"></a>Azure deploy button
 
-Use this button to deploy the template:
+Click this button to deploy the ARM template.  Use the template parameters table for a preview of the information the template requires.
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FF5Networks%2Ff5-azure-arm-templates%2Fmaster%2Fexperimental%2Fstandalone%2F1nic%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-### Template parameters
+####Template parameters####
 
 | Parameter | Required | Description |
 | --- | --- | --- |
@@ -43,7 +38,10 @@ Use this button to deploy the template:
 | restrictedSrcAddress | x | Restricts management access to a specific network or address. Enter a IP address or address range in CIDR notation, or asterisk for all sources. |
 | tagValues | x | Additional key-value pair tags to be added to each Azure resource. |
 
+This completes the Deploy button configuration.  
+
 ### <a name="powershell"></a>PowerShell Script Example
+The following is an example of using the PowerShell script to deploy a single NIC BIG-IP VE in Azure.
 
 ```powershell
     # Params below match to parameteres in the azuredeploy.json that are gen-unique, otherwsie pointing to
@@ -123,6 +121,8 @@ Use this button to deploy the template:
 =======
 
 ### <a name="cli"></a>Azure CLI(1.0) Script Example
+
+The following is an example of using the Azure CLI script to deploy a single NIC BIG-IP VE in Azure.
 
 ```bash
     #!/bin/bash
@@ -217,7 +217,11 @@ Use this button to deploy the template:
 
 ```
 
-## Configuration Example <a name="config">
+## Documentation
+
+The ***BIG-IP Virtual Edition and Microsoft Azure: Setup*** guide (https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-msft-azure-12-1-0.html) decribes how to create the configuration manually without using the ARM template.
+
+## Additional Information <a name="config">
 
 The following is a simple configuration diagram for this single NIC deployment. In this scenario, all access to the BIG-IP VE appliance is through the same IP address and virtual network interface (vNIC).  This interface processes both management and data plane traffic.
 
