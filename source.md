@@ -241,13 +241,13 @@ Note that while the Management Port shown in the following example is **443**, y
 ## Troubleshooting
 Use this section for common problems and troubleshooting steps to solve them.
 
-  -🐼 *The deploy button didn't do anything.*<br>
+  - 🐼 *The deploy button didn't do anything.*<br>
   Make sure you actually click the button.
   
-  -👻 *Troubleshooting 2*<br>
+  - 👻 *Troubleshooting 2*<br>
   Answer 2
   
-  -🚽 *Troubleshooting 3*<br>
+  - 🚽 *Troubleshooting 3*<br>
   etc.
   
 
