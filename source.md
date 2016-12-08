@@ -220,8 +220,8 @@ The following is an example of using the Azure CLI script to deploy a single NIC
 ## Documentation
 
 The ***BIG-IP Virtual Edition and Microsoft Azure: Setup*** guide (https://support.f5.com/kb/en-us/products/big-ip_ltm/manuals/product/bigip-ve-setup-msft-azure-12-1-0.html) decribes how to create the configuration manually without using the ARM template.
-
-## Additional Information <a name="config">
+ <a name="config">
+## Additional Information
 
 The following is a simple configuration diagram for this single NIC deployment. In this scenario, all access to the BIG-IP VE appliance is through the same IP address and virtual network interface (vNIC).  This interface processes both management and data plane traffic.
 
