@@ -239,31 +239,20 @@ Note that while the Management Port shown in the following example is **443**, y
 
 <a name="trouble">
 ## Troubleshooting
+Use this section for common problems and troubleshooting steps to solve them.
+
+  - *The deploy button didn't do anything.*<br>
+  Make sure you actually click the button.
+  
+  - *Troubleshooting 2*<br>
+  Answer 2
+  
+  - *Troubleshooting 3*<br>
+  etc.
+  
 
 
-The goal is for the design patterns for all the iterative examples of F5 being deployed via ARM templates to closely match as much as possible.
 
-### List of Patterns For Contributing Developers
-
-
- 1. Still working on patterns to use
-
-## Filing Issues
-
-See the Issues section of `Contributing <CONTRIBUTING.md>`__.
-
-## Contributing
-
-See `Contributing <CONTRIBUTING.md>`__
-
-## Test
-
-
-Before you open a pull request, your code must have passed a deployment into Azure with the intended result
-
-## Unit Tests
-
-Simply deploying the ARM template and completing use case fulfills a functional test
 
 
 
