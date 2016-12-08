@@ -227,7 +227,7 @@ The following is a simple configuration diagram for this single NIC deployment. 
 
 Note that while the Management Port shown in the following example is **443**, you can alternatively use **8443** in your configuration.
 
-![Single NIC configuration example](images/azure-1nic-sm.png)
+![Single NIC configuration example](azure-1nic-sm.png)
 
 
 ## Design Patterns
