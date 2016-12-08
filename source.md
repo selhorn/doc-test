@@ -7,7 +7,7 @@
 
 This solution implements an Azure ARM Template to deploy a base example of F5 in a cloud-focused, single NIC deployment.  This is the standard Cloud design where the compute instance of the BIG-IP LTM VE is running with a single interface, which processes both management and data plane traffic.  This is a traditional model in the cloud where the deployment is considered one-armed.
 
-See the **[Additional Information]**(#config) section for a configuration diagram and description for this solution.
+See the **[Additional Information](#config)** section for a configuration diagram and description for this solution.
 
 ## Installation
 
