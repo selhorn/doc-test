@@ -19,11 +19,12 @@ The following are prerequistes for this configuration.
 ## Installation
 
 You have three options for deploying this template:
-  - Using the Azure deploy button
+  - Using the [Azure deploy button](#deploy)
   - Using [PowerShell](#powershell)
   - Using [CLI Tools](#cli)
 
-### <a name="azure"></a>Azure deploy button
+<a name="azure">
+### Azure deploy button
 
 Click this button to deploy the ARM template.  Use the template parameters table for a preview of the information the template requires.
 
