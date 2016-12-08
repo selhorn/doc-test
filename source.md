@@ -18,7 +18,7 @@ The following are prerequistes for this configuration.
 
 ## Installation
 
-You have three options for deploying this template:
+You have three options for deploying this template.  If you are unsure which to use, we recommend the deploy button.
   - Using the [Azure deploy button](#deploy)
   - Using [PowerShell](#powershell)
   - Using [CLI Tools](#cli)
