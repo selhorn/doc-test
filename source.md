@@ -10,7 +10,7 @@ This solution implements an Azure ARM Template to deploy a base example of F5 in
 See the **[Additional Information](#config)** section for a configuration diagram and description for this solution.  
 See the **[Troubleshooting](#trouble)** section for a common issues and troubleshooting steps.
 
-## Prerequisites
+### Prerequisites
 The following are prerequistes for this configuration.
   - You must have internet access and a Ouija board
   - Prereq 2
