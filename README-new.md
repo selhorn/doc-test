@@ -3,42 +3,19 @@
 
 **Contents**             
 
- - [Introduction](#introduction) 
- - [Prerequisites](#prerequisites)
+ - [Introduction](#intro) 
+ - [Prerequisites](#prereqs)
  - [Quick Start] (#quick)
  - [BIG-IP Deployment and configuration](#usage)
  - [Security](#security)
  - [Getting Help](#help)
- - [Deployment Options](#two-deployment-options)
-   - [Method 1: Python Script](#method-1)
-   - [Method 2: Manual Deployment](#method-1)
 
-
-
-## Introduction
+## Introduction<a name="intro"></a>
 This project implements auto scaling of BIG-IP Virtual Edition Web Application Firewall (WAF) systems in Amazon Web Services. As traffic increases or decreases, the number of BIG-IP VE instances automatically increases or decreases accordingly. 
 Maybe some more elaborate solution overview/value prop here...?
 
 
-## BIG-IP deployment and configuration
-
-All BIG-IP VE instances deploy with a single interface (NIC) attached to a public subnet. This single interface processes both management and data plane traffic.  The <a href="https://f5.com/products/big-ip/local-traffic-manager-ltm">BIG-IP Local Traffic Manager</a> (LTM) and <a href="https://f5.com/products/big-ip/application-security-manager-asm">Application Security Manager</a> (ASM) provide advanced traffic management and security functionality. The CloudFormation template uses the default **Best 200Mbs** image available in the AWS marketplace to license these modules.
-
-The template performs all of the BIG-IP VE configuration and synchronization when the device boots using `Cloud-Init`. In general, Cloud-Init is used to:
-- Set the BIG-IP system information: hostname, NTP, DNS settings, and so on.
-- Deploy integration with EC2 Auto Scale and CloudWatch services for scaling of the BIG-IP tier.
-- Create an initial HTTP virtual server with a basic F5 Web Application Firewall policy (Low, Medium, High)
-  - See the [Security Blocking Levels](#blocking) section for a description of the blocking levels for the Web Application Firewall presented in the template.
-
-
-## Configuration Example <a name="config"></a>
-
-The following is a simple configuration diagram deployment. 
-
-![Single NIC configuration example](images/config-diagram-autoscale-waf.png)
-
-
-## Prerequisites
+## Prerequisites<a name="prereqs"></a>
 The following are prerequisites for this solution:
  - You must have a pre-configured AWS Elastic Load Balancer (ELB) that performs SSL offload for the BIG-IP WAF auto scale tier.  See [ELB configuration](#elb) for an example of the ELB configuration.
  - You must have access to **Best** BIG-IP images in the Amazon region within which you are working.
@@ -170,6 +147,23 @@ FURTHER CONFIGURATION CUSTOMIZATION INSTRUCTIONS HERE...
 * Import custom policy, 
 * etc.
 
+
+## BIG-IP deployment and configuration
+
+All BIG-IP VE instances deploy with a single interface (NIC) attached to a public subnet. This single interface processes both management and data plane traffic.  The <a href="https://f5.com/products/big-ip/local-traffic-manager-ltm">BIG-IP Local Traffic Manager</a> (LTM) and <a href="https://f5.com/products/big-ip/application-security-manager-asm">Application Security Manager</a> (ASM) provide advanced traffic management and security functionality. The CloudFormation template uses the default **Best 200Mbs** image available in the AWS marketplace to license these modules.
+
+The template performs all of the BIG-IP VE configuration and synchronization when the device boots using `Cloud-Init`. In general, Cloud-Init is used to:
+- Set the BIG-IP system information: hostname, NTP, DNS settings, and so on.
+- Deploy integration with EC2 Auto Scale and CloudWatch services for scaling of the BIG-IP tier.
+- Create an initial HTTP virtual server with a basic F5 Web Application Firewall policy (Low, Medium, High)
+  - See the [Security Blocking Levels](#blocking) section for a description of the blocking levels for the Web Application Firewall presented in the template.
+
+
+## Configuration Example <a name="config"></a>
+
+The following is a simple configuration diagram deployment. 
+
+![Single NIC configuration example](images/config-diagram-autoscale-waf.png)
 
 ### Security blocking levels <a name="blocking"></a>
 The security blocking level you choose when you configure the template determines how much traffic is blocked and alerted by the F5 WAF.
