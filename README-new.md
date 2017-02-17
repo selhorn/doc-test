@@ -6,9 +6,10 @@
  - [Introduction](#intro) 
  - [Prerequisites](#prereqs)
  - [Quick Start] (#quick)
+ - [Getting Help](#help)
  - [BIG-IP Deployment and configuration](#usage)
  - [Security](#security)
- - [Getting Help](#help)
+
 
 ## Introduction<a name="intro"></a>
 This project implements auto scaling of BIG-IP Virtual Edition Web Application Firewall (WAF) systems in Amazon Web Services. As traffic increases or decreases, the number of BIG-IP VE instances automatically increases or decreases accordingly. 
@@ -31,23 +32,20 @@ The following are prerequisites for this solution:
     - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility
     - A port for accessing your applications via the BIG-IP virtual server
  - Key pair for SSH access to BIG-IP VE (you can create or import in AWS)
-  
- This solution uses the SSH key to enable access to the BIG-IP system(s). If you want access to the BIG-IP web-based Configuration utility, you must first SSH into the BIG-IP VE using the SSH key you provided in the template.  You can then create a user account with admin-level permissions on the BIG-IP VE to allow access if necessary.
-
-
-### Quick Start
+ 
+## Quick Start
 Download the CloudFormation template from https://github.com/f5networks and use it to create a stack in AWS CloudFormation either using the AWS Console or AWS CLI
 
 **AWS Console**
-
- From the AWS Console main page: 
+From the AWS Console main page: 
    1. Under AWS Services, click **CloudFormation**.
    2. Click the **Create Stack** button 
    3. In the Choose a template area, click **Upload a template to Amazon S3**.
    4. Click **Choose File** and then browse to the **f5-autoscale-bigip.template** file.
- 
- <br>
- **AWS CLI**
+
+<br>
+
+**AWS CLI**
  
  From the AWS CLI, use the following command syntax:
  ```
@@ -148,7 +146,12 @@ FURTHER CONFIGURATION CUSTOMIZATION INSTRUCTIONS HERE...
 * etc.
 
 
-## BIG-IP deployment and configuration
+### Help <a name="help"></a>
+Because this template has been created and fully tested by F5 Networks, it is fully supported by F5. This means you can get assistance if necessary from F5 Technical Support via your typical methods.
+
+We encourage you to use our [Slack channel](https://f5cloudsolutions.herokuapp.com) for discussion and assistance on F5 CloudFormation templates.  This channel is typically monitored Monday-Friday 9-5 PST by F5 employees who will offer best-effort support. 
+
+## BIG-IP deployment and configuration <a name="usage"></a>
 
 All BIG-IP VE instances deploy with a single interface (NIC) attached to a public subnet. This single interface processes both management and data plane traffic.  The <a href="https://f5.com/products/big-ip/local-traffic-manager-ltm">BIG-IP Local Traffic Manager</a> (LTM) and <a href="https://f5.com/products/big-ip/application-security-manager-asm">Application Security Manager</a> (ASM) provide advanced traffic management and security functionality. The CloudFormation template uses the default **Best 200Mbs** image available in the AWS marketplace to license these modules.
 
@@ -158,12 +161,23 @@ The template performs all of the BIG-IP VE configuration and synchronization whe
 - Create an initial HTTP virtual server with a basic F5 Web Application Firewall policy (Low, Medium, High)
   - See the [Security Blocking Levels](#blocking) section for a description of the blocking levels for the Web Application Firewall presented in the template.
 
+**Note**: This solution uses the SSH key to enable access to the BIG-IP system(s). If you want access to the BIG-IP web-based Configuration utility, you must first SSH into the BIG-IP VE using the SSH key you provided in the template.  You can then create a user account with admin-level permissions on the BIG-IP VE to allow access if necessary.
 
 ## Configuration Example <a name="config"></a>
 
 The following is a simple configuration diagram deployment. 
 
 ![Single NIC configuration example](images/config-diagram-autoscale-waf.png)
+
+
+## Security
+This CloudFormation template downloads helper code to configure the BIG-IP system. To verify the integrity of the template, you can open the CFT and ensure the following lines are present. See [Security Detail](#securitydetail) for the exact code in each of the following sections.
+  - In the */config/verifyHash* section: **script-signature** and then a hashed signature
+  - In the */config/installCloudLibs.sh* section **"tmsh load sys config merge file /config/verifyHash"**
+  
+Additionally, F5 provides checksums for all of our supported Amazon Web Services CloudFormation templates. For instructions and the checksums to compare against, see https://devcentral.f5.com/codeshare/checksums-for-f5-supported-cft-and-arm-templates-on-github-1014.
+
+In order to form a cluster of devices, a secure trust must be established between BIG-IP systems. To establish this trust, we generate and store credentials in an Amazon S3 bucket. You must not delete these credentials from the S3 bucket.
 
 ### Security blocking levels <a name="blocking"></a>
 The security blocking level you choose when you configure the template determines how much traffic is blocked and alerted by the F5 WAF.
@@ -186,14 +200,7 @@ All traffic that is not being blocked is being used by the WAF for learning. Ove
 ALex to work on (Updgrade/ Recovery / Troubleshoot) 
 
 
-## Security
-This CloudFormation template downloads helper code to configure the BIG-IP system. To verify the integrity of the template, you can open the CFT and ensure the following lines are present. See [Security Detail](#securitydetail) for the exact code in each of the following sections.
-  - In the */config/verifyHash* section: **script-signature** and then a hashed signature
-  - In the */config/installCloudLibs.sh* section **"tmsh load sys config merge file /config/verifyHash"**
-  
-Additionally, F5 provides checksums for all of our supported Amazon Web Services CloudFormation templates. For instructions and the checksums to compare against, see https://devcentral.f5.com/codeshare/checksums-for-f5-supported-cft-and-arm-templates-on-github-1014.
 
-In order to form a cluster of devices, a secure trust must be established between BIG-IP systems. To establish this trust, we generate and store credentials in an Amazon S3 bucket. You must not delete these credentials from the S3 bucket.
 
 
 ## Security Details <a name="securitydetail"></a>
@@ -375,10 +382,7 @@ You have a choice when it comes to filing issues:
   - Use the **Issues** link on the GitHub menu bar in this repository for items such as enhancement or feature requests and non-urgent bug fixes. Tell us as much as you can about what you found and how you found it.
   - Contact F5 Technical support via your typical method for more time sensitive changes and other issues requiring immediate support.
 
-### Help 
-Because this template has been created and fully tested by F5 Networks, it is fully supported by F5. This means you can get assistance if necessary from F5 Technical Support via your typical methods.
 
-We encourage you to use our [Slack channel](https://f5cloudsolutions.herokuapp.com) for discussion and assistance on F5 CloudFormation templates.  This channel is typically monitored Monday-Friday 9-5 PST by F5 employees who will offer best-effort support. 
 
 
 ## Copyright
