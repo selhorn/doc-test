@@ -22,11 +22,7 @@ The following are prerequisites for this solution:
  - You must have access to **Best** BIG-IP images in the Amazon region within which you are working.
     - Make sure that you have accepted the EULA for all Images in the AWS marketplace.
  - An AWS VPC with a public subnet, an ELB in front of the BIG-IP(s), and a DNS name for the application pool (which can be also be the DNS name of an ELB if using one behind the BIG-IP(s))
- - Permissions to launch Cloudformation templates, which creates the following resources:
-   - Autoscale Groups
-   - S3 Buckets
-   - Instances
-   - IAM Instance Profiles
+ - Permissions to launch Cloudformation templates, which create Autoscale Groups, S3 Buckets, Instances, and IAM Instance Profiles
  - An AWS Security Group with the following inbound rules:
     - Port 22 for SSH access to the BIG-IP VE
     - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility
@@ -54,7 +50,8 @@ From the AWS Console main page:
 ```
 <br>
 ### Usage ###
-Use this template to automate the auto scale implementation by providing the parameter values. You can use or change the default parameter values, which are defined in the AWS CloudFormation template on the AWS Console.  If using the AWS CLI, use the following JSON parameter file.
+Use this template to automate the auto scale implementation by providing the parameter values. You can use or change the default parameter values, which are defined in the AWS CloudFormation template on the AWS Console. 
+If using the AWS CLI, use the [JSON parameter file](#json).
 
 
 | Parameter | Required | Description |
@@ -90,7 +87,8 @@ Use this template to automate the auto scale implementation by providing the par
 
 
 
-
+<a name="json"></a>
+### JSON parameters file
 Example minimum **autoscale-bigip-parameters.json** using default values for unlisted parameters
 ```json
 [
