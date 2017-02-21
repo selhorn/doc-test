@@ -17,13 +17,13 @@ This solution implements auto scaling of BIG-IP Virtual Edition Web Application 
 
 ## Prerequisites<a name="prereqs"></a>
 The following are prerequisites for this solution:
- - You must have a pre-configured AWS Elastic Load Balancer (ELB) that performs SSL offload for the BIG-IP WAF auto scale tier.  See [ELB configuration](#elb) for an example of the ELB configuration.
- - You must have access to **Best** BIG-IP images in the Amazon region within which you are working.
-    - Make sure that you have accepted the EULA for all Images in the AWS marketplace.
- - An AWS VPC with a public subnet, an ELB in front of the BIG-IP(s), and a DNS name for the application pool (which can be also be the DNS name of an ELB if using one behind the BIG-IP(s))
- - Permissions to launch Cloudformation templates, which create Autoscale Groups, S3 Buckets, Instances, and IAM Instance Profiles
+ - An existing AWS VPC with a public subnet, an ELB in front of the BIG-IP VE(s), and a DNS name for the application pool (which can be also be the DNS name of an ELB if using one behind the BIG-IP(s)) 
+   - The ELB in front of the BIG-IP VEs must be pre-configured to perform SSL offload for the BIG-IP WAF auto scale tier.  See [ELB configuration](#elb) for an example of the ELB configuration.
+ - Access to **Best** BIG-IP images in the Amazon region within which you are working.
+ - You must have accepted the EULA for all Images in the AWS marketplace.
+ - Permission to launch Cloudformation templates. The templates create auto scale Groups, S3 Buckets, Instances, and IAM Instance Profiles
  - An AWS Security Group with the following inbound rules:
-    - Port 22 for SSH access to the BIG-IP VE
+    - Port 22 for SSH access to the BIG-IP VE *(Source = Intra-VPC and/or mgmt networks)*
     - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility
     - A port for accessing your applications via the BIG-IP virtual server
  - Key pair for SSH access to BIG-IP VE (you can create or import in AWS)
