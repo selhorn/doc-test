@@ -37,6 +37,7 @@ The following are prerequisites for this solution:
 Download the CloudFormation template from https://github.com/f5networks and use it to create a stack in AWS CloudFormation either using the AWS Console or AWS CLI
 
 **AWS Console**
+
 From the AWS Console main page: 
    1. Under AWS Services, click **CloudFormation**.
    2. Click the **Create Stack** button 
