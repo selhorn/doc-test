@@ -44,8 +44,7 @@ For the Marketplace,
 
 
 ### Usage ###
-Use this template to automate the auto scale implementation by providing the parameter values. You can use or change the default parameter values, which are defined in the AWS CloudFormation template on the AWS Console. 
-If using the AWS CLI, use the [JSON parameter file](#json).
+One you have launched the CFT from the marketplace, you need complete the template by parameter values. The following table can help you gather the information you need before beginning the template.  
 
 
 | Parameter | Required | Description |
@@ -57,8 +56,8 @@ If using the AWS CLI, use the [JSON parameter file](#json).
 | bigipSecurityGroup | x | AWS Security Group for BIG-IP VEs |
 | bigipElasticLoadBalancer | x | AWS Elastic Load Balancer group for BIG-IPs |
 | sshKey | x | EC2 KeyPair to enable SSH access to the BIG-IP instance |
-| instanceType | x | AWS Instance Type (Default m3.2xlarge) |
-| throughput | x | Maximum amount of throughput for BIG-IP VE (Default 1000Mbps) |
+| instanceType | x | AWS Instance Type (the default is m3.2xlarge) |
+| throughput | x | Maximum amount of throughput for BIG-IP VE (the default 1000Mbps) |
 | adminUsername | x | BIG-IP Admin Username for clustering. Note that the user name can contain only alphanumeric characters, periods ( . ), underscores ( _ ), or hyphens ( - ). Note also that the user name cannot be any of the following: adm, apache, bin, daemon, guest, lp, mail, manager, mysql, named, nobody, ntp, operator, partition, password, pcap, postfix, radvd, root, rpc, rpm, sshd, syscheck, tomcat, uucp, or vcsa. |
 | managementGuiPort | x | Port of BIG-IP management Configuration utility (Default 8443) |
 | timezone | x | Olson timezone string from /usr/share/zoneinfo (Default UTC) |
