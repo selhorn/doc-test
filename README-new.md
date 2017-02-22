@@ -25,7 +25,7 @@ The following are prerequisites for this solution:
  - Key pair for SSH access to BIG-IP VE (you can create or import the key pair in AWS)
  - An AWS Security Group with the following inbound rules:
     - Port 22 for SSH access to the BIG-IP VE *(source = Intra-VPC and/or mgmt networks)*
-    - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility *(source = Intra-VPC and/or mgmt networks)*
+    - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility *(source = Intra-VPC and/or mgmt networks)*. See the [Configuration Utility note](#note) for an important note about accessing the Configuration utility.
     - Port 4553 and 6123-6128 for cluster communication *(source = Intra-VPC or the public subnet of the peer)* 
     - Port 80 accessing your applications via the BIG-IP virtual server *(source = any)*
  
@@ -102,10 +102,34 @@ If using the AWS CLI, use the [JSON parameter file](#json).
 
 FURTHER CONFIGURATION CUSTOMIZATION INSTRUCTIONS HERE...
 
-* Log in via SSH, add user/password or read from S3
-* configure logging
-* Import custom policy, 
-* etc.
+  - Log in via SSH, add user/password.
+
+    - Navigate the Cloudformation Output Tab. Note the name of the Autoscale Group created.
+    - Navigate to the Autoscale Group Tab. Click on the Instances Tab of the Autoscale Group. Click on the Instance ID link of the first member of the Autoscale Group. 
+    - Note the IP or Public IP.
+    - SSH to the IP or Public IP
+``` 
+  >ssh -i ~/.ssh/<YOUR-PRIVATE-SSH-KEY-HERE> admin@<INSTANCE IP>
+```
+
+    - Create custom-admin user.
+
+``` 
+  #tmsh create auth user custom-user shell advanced password 
+
+  ex.
+  admin@(ip-10-0-0-17)(Standalone)(Active)(/Common)(tmos)# create auth user my-custom-admin partition-access add { all-partitions { role admin } } prompt-for-password
+  changing password for my-custom-admin
+  new password:
+  confirm password:
+  admin@(ip-10-0-0-17)(Standalone)(Active)(/Common)(tmos)#
+
+```
+
+  - configure logging
+  - Import custom policy, 
+  - etc.
+
 
 
 ### Help <a name="help"></a>
@@ -115,14 +139,18 @@ We encourage you to use our [Slack channel](https://f5cloudsolutions.herokuapp.c
 
 ## BIG-IP deployment and configuration <a name="usage"></a>
 
-All BIG-IP VE instances deploy with a single interface (NIC) attached to a public subnet. This single interface processes both management and data plane traffic.  The <a href="https://f5.com/products/big-ip/local-traffic-manager-ltm">BIG-IP Local Traffic Manager</a> (LTM) and <a href="https://f5.com/products/big-ip/application-security-manager-asm">Application Security Manager</a> (ASM) provide advanced traffic management and security functionality. The CloudFormation template uses the default **Best 200Mbs** image available in the AWS marketplace to license these modules.
+All BIG-IP VE instances deploy with a single interface (NIC) attached to a public subnet. This single interface processes both management and data plane traffic.  The LTM and ASM provide advanced traffic management and security functionality. The CloudFormation template is used to collect some initial deployment input parameters and create an autoscale group of BIG-IP VEs. The instances parameters and configurations are defined by the Auto Scale group's *launch configuration*. The launch configuration is used to:
 
-The template performs all of the BIG-IP VE configuration and synchronization when the device boots using `Cloud-Init`. In general, Cloud-Init is used to:
-- Set the BIG-IP system information: hostname, NTP, DNS settings, and so on.
-- Deploy integration with EC2 Auto Scale and CloudWatch services for scaling of the BIG-IP tier.
-- Create an initial HTTP virtual server with a basic F5 Web Application Firewall policy (Low, Medium, High)
-  - See the [Security Blocking Levels](#blocking) section for a description of the blocking levels for the Web Application Firewall presented in the template.
+  - Set the BIG-IP system information: hostname, NTP, DNS settings, and so on.
+  - Provision the WAF module: BIG-IP Application Security Manager (ASM)
+  - Join the auto scale cluster
+  - Deploy integration with EC2 Auto Scale and CloudWatch services for scaling of the BIG-IP tier.
+  - Create an initial HTTP virtual server with a basic Web Application Firewall policy (Low, Medium, High)
+    - See the [Security Blocking Levels](#blocking) section for a description of the blocking levels for the Web Application Firewall presented in the template.
 
+Once the first instance is deployed, it becomes the cluster primary and all subsequent instances launched will join a cluster primary to pull the latest configuration from the cluster. In this respect, you can make changes to the running configuration of this solution and not have to manage the lifecycle of the config strictly through the "Launch Configuration".
+
+<a name="note"></a>
 **Note**: This solution uses the SSH key to enable access to the BIG-IP system(s). If you want access to the BIG-IP web-based Configuration utility, you must first SSH into the BIG-IP VE using the SSH key you provided in the template.  You can then create a user account with admin-level permissions on the BIG-IP VE to allow access if necessary.
 
 ## Configuration Example <a name="config"></a>
@@ -155,11 +183,23 @@ Attack signatures are rules that identify attacks on a web application and its c
 All traffic that is not being blocked is being used by the WAF for learning. Over time, if the WAF determines that traffic is safe, it allows it through to the application. Alternately, the WAF can determine that traffic is unsafe and block it from the application.
 
 
-## HOW THIS WORKS HERE
-
-
 ## LIFECYCLE STUFF HERE
-ALex to work on (Updgrade/ Recovery / Troubleshoot) 
+
+Alex to work on (Updgrade/ Recovery). Investigation needed.
+
+  - Make UCS backup
+  - Maintainence Window
+    - Update Stack using Template with new AMI IDs
+    - Or Blue/Green, create another deployment and ELB
+
+
+## TROUBLESHOOTING
+
+1) SSH 
+2) /var/log/cloudlibs-install.log
+3) Create a qkview. Open a case with Support.
+
+etc.
 
 
 
