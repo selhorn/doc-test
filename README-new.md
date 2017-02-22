@@ -22,7 +22,7 @@ The following are prerequisites for this solution:
  - Access to **Best** BIG-IP images in the Amazon region within which you are working.
  - Accepted the EULA for all Images in the AWS marketplace.
  - Permission to launch Cloudformation templates. The templates create auto scale Groups, S3 Buckets, Instances, and IAM Instance Profiles
- - Key pair for SSH access to BIG-IP VE (you can create or import in AWS)
+ - Key pair for SSH access to BIG-IP VE (you can create or import the key pair in AWS)
  - An AWS Security Group with the following inbound rules:
     - Port 22 for SSH access to the BIG-IP VE *(source = Intra-VPC and/or mgmt networks)*
     - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility *(source = Intra-VPC and/or mgmt networks)*
@@ -31,25 +31,18 @@ The following are prerequisites for this solution:
  
  
 ## Quick Start
-Download the CloudFormation template from https://github.com/f5networks and use it to create a stack in AWS CloudFormation either using the AWS Console or AWS CLI
+This readme file describes launching from the AWS Marketplace.  If you are using another method, see https://github.com/F5Networks/f5-aws-cloudformation/tree/master/supported/solutions/autoscale.
 
-**AWS Console**
+For the Marketplace, 
+- From the **For Region** list, select your Region 
+- From the **Delivery Methods** list, select **Auto Scale Cluster Deployment using AWS CFT** (FIX IF NECESSARY....)
+- Click **Continue**
+- Profit?? **FIX**
+- Use the table in the Usage section for 
 
-From the AWS Console main page: 
-   1. Under AWS Services, click **CloudFormation**.
-   2. Click the **Create Stack** button 
-   3. In the Choose a template area, click **Upload a template to Amazon S3**.
-   4. Click **Choose File** and then browse to the **f5-autoscale-bigip.template** file.
 
-<br>
 
-**AWS CLI**
- 
- From the AWS CLI, use the following command syntax:
- ```
- aws cloudformation create-stack --stack-name Acme-autoscale-bigip --template-body file:///fullfilepath/f5-autoscale-bigip.template --parameters file:///fullfilepath/f5-autoscale-bigip-parameters.json --capabilities CAPABILITY_NAMED_IAM`
-```
-<br>
+
 ### Usage ###
 Use this template to automate the auto scale implementation by providing the parameter values. You can use or change the default parameter values, which are defined in the AWS CloudFormation template on the AWS Console. 
 If using the AWS CLI, use the [JSON parameter file](#json).
@@ -87,54 +80,23 @@ If using the AWS CLI, use the [JSON parameter file](#json).
 <br>
 
 
+*NOTE:*
 
-<a name="json"></a>
-### JSON parameters file
-Example minimum **autoscale-bigip-parameters.json** using default values for unlisted parameters
-```json
-[
-	{
-		"ParameterKey":"deploymentName",
-		"ParameterValue":"abc"
-	},
-	{
-		"ParameterKey":"vpc",
-		"ParameterValue":"vpc-abcd1234"
-	},
-	{
-		"ParameterKey":"availabilityZones",
-		"ParameterValue":"us-east-1a,us-east-1b"
-	},
-	{
-		"ParameterKey":"subnets",
-		"ParameterValue":"subnet-abcd1234,subnet-abcd1234"
-	},
-	{
-		"ParameterKey":"bigipSecurityGroup",
-		"ParameterValue":"sg-abcd1234"
-	},
-	{
-		"ParameterKey":"bigipElasticLoadBalancer",
-		"ParameterValue":"abc-BigipElb"
-	},
-	{
-		"ParameterKey":"sshKey",
-		"ParameterValue":"awskeypair"
-	},
-	{
-		"ParameterKey":"notificationEmail",
-		"ParameterValue":"user@company.com"
-	},
-	{
-		"ParameterKey":"appInternalDnsName",
-		"ParameterValue":"poolapp.example.com"
-	},
-	{
-		"ParameterKey":"policyLevel",
-		"ParameterValue":"high"
-	}
-]
-```
+  - All instances deploy with a single interface (NIC) with a Public IP. This single interface processes both management and data plane traffic. In this deployment, the Management GUI port is bumped up to 8443 by default. 
+  - The CloudFormation template uses the default **Best 200Mbs** image available in the AWS marketplace to license these modules.
+  - Scaling Up/Down Thresholds:
+
+    ```
+    OPTIONAL (Default is set artificially low for testing. Recommended to adjust as ratio to utility size)
+    ex. 80% of Throughput
+    Scale Up Bytes Threshold = 
+    25 Mbps   = 3276800 bytes   * .80 =   2621440
+    200 Mbps  = 26214400 bytes  * .80 =  20971520
+    1000 Mbps = 131072000 bytes * .80 = 104857600
+    5000 Mbps = 655360000 bytes * .80 = 524288000
+    ```
+
+
 
 ### Login In
 
