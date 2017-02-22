@@ -20,13 +20,15 @@ The following are prerequisites for this solution:
  - An existing AWS VPC with a public subnet, an ELB in front of the BIG-IP VE(s), and a DNS name for the application pool (which can be also be the DNS name of an ELB if using one behind the BIG-IP(s)) 
    - The ELB in front of the BIG-IP VEs must be pre-configured to perform SSL offload for the BIG-IP WAF auto scale tier.  See [ELB configuration](#elb) for an example of the ELB configuration.
  - Access to **Best** BIG-IP images in the Amazon region within which you are working.
- - You must have accepted the EULA for all Images in the AWS marketplace.
+ - Accepted the EULA for all Images in the AWS marketplace.
  - Permission to launch Cloudformation templates. The templates create auto scale Groups, S3 Buckets, Instances, and IAM Instance Profiles
- - An AWS Security Group with the following inbound rules:
-    - Port 22 for SSH access to the BIG-IP VE *(Source = Intra-VPC and/or mgmt networks)*
-    - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility
-    - A port for accessing your applications via the BIG-IP virtual server
  - Key pair for SSH access to BIG-IP VE (you can create or import in AWS)
+ - An AWS Security Group with the following inbound rules:
+    - Port 22 for SSH access to the BIG-IP VE *(source = Intra-VPC and/or mgmt networks)*
+    - Port 8443 (or other port) for accessing the BIG-IP web-based Configuration utility *(source = Intra-VPC and/or mgmt networks)*
+    - Port 4553 and 6123-6128 for cluster communication *(source = Intra-VPC or the public subnet of the peer)* 
+    - Port 80 accessing your applications via the BIG-IP virtual server *(source = any)*
+ 
  
 ## Quick Start
 Download the CloudFormation template from https://github.com/f5networks and use it to create a stack in AWS CloudFormation either using the AWS Console or AWS CLI
@@ -308,7 +310,7 @@ Note the hashes and script-signature may be different in your template. It is im
 ```
 
 ## Example ELB configuration <a name="elb"></a>
-The following is an example ELB configuration that could be used in this implementation.
+The following is an example ELB configuration that could be used in this implementation. For specific instructions on configuring an ELB, see http://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/load-balancer-getting-started.html.
 
 ```json
     "bigipElasticLoadBalancer": {
